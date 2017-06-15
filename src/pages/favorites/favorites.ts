@@ -30,17 +30,22 @@ export class FavoritesPage {
       //click en sida true.
       //console.log(remove);
       if(remove){
-        this.quotesService.removeQuoteFromFavorites(quote);
-        this.quotes=this.quotesService.getFavoriteQuotes();
-        //alternativa si se quiere borrar sin recargar todo:
-        //const position= this.quotes.indexOf(quote);
-        //this.quotes.splice(position,1);
+        this.onRemoveFromFavorites(quote);
       }
     });
     //no existen estos hooks en nuevas versiones
     /*modal.willLeave.subscribe(
       (remove:boolean)=>console.log(remove)
     );*/
+  }
+
+  onRemoveFromFavorites(quote:Quote){
+    this.quotesService.removeQuoteFromFavorites(quote);
+    //si se quiere recargar todo devuelta:
+    //this.quotes=this.quotesService.getFavoriteQuotes();
+    //alternativa si se quiere borrar sin recargar todo:
+    const position= this.quotes.indexOf(quote);
+    this.quotes.splice(position,1);
   }
 
 }
