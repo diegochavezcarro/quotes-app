@@ -1,3 +1,4 @@
+import { SettingsService } from './../../services/settings';
 import { QuotePage } from './../quote/quote';
 import { Quote } from './../../data/quote.interface';
 import { QuotesService } from './../../services/quotes';
@@ -15,7 +16,8 @@ export class FavoritesPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private quotesService: QuotesService,
-    private modalCtrl: ModalController) {
+    private modalCtrl: ModalController,
+    private settingsService: SettingsService) {
   }
 
   ionViewWillEnter() {
@@ -53,4 +55,9 @@ export class FavoritesPage {
     this.menuCtrl.open();
   }
   */
+
+  getBackground(){
+    return this.settingsService.isAltBackground() 
+        ? 'altQuoteBackground' : 'quoteBackground';
+  }
 }
