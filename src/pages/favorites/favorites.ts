@@ -47,5 +47,10 @@ export class FavoritesPage {
     const position= this.quotes.indexOf(quote);
     this.quotes.splice(position,1);
   }
-
+  /*
+  //se reemplaza con la directiva menuToggle
+  onOpenMenu(){
+    this.menuCtrl.open();
+  }
+  */
 }
