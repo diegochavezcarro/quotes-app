@@ -26,5 +26,11 @@ export class QuotesService {
         //por las dudas retorna una copia del array asi no lo modifican dsd afuera
         return this.favoriteQuotes.slice();
     }
+
+    isQuoteFavorite(quote:Quote){
+        return this.favoriteQuotes.find((quoteEl:Quote)=>{
+            return quoteEl.id==quote.id;
+        });
+    }
     
 }
