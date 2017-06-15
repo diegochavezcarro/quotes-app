@@ -4,7 +4,7 @@ import { Quote } from './../../data/quote.interface';
 import { QuotesService } from './../../services/quotes';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ModalController} from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -21,17 +21,17 @@ export class FavoritesPage {
   }
 
   ionViewWillEnter() {
-    this.quotes=this.quotesService.getFavoriteQuotes();
+    this.quotes = this.quotesService.getFavoriteQuotes();
   }
 
-  onViewQuote(quote:Quote){
-    const modal = this.modalCtrl.create(QuotePage,quote);
+  onViewQuote(quote: Quote) {
+    const modal = this.modalCtrl.create(QuotePage, quote);
     modal.present();
-    modal.onDidDismiss((remove:boolean)=>{
+    modal.onDidDismiss((remove: boolean) => {
       //si se da click en no, da false. Click afuera da null.
       //click en sida true.
       //console.log(remove);
-      if(remove){
+      if (remove) {
         this.onRemoveFromFavorites(quote);
       }
     });
@@ -41,13 +41,13 @@ export class FavoritesPage {
     );*/
   }
 
-  onRemoveFromFavorites(quote:Quote){
+  onRemoveFromFavorites(quote: Quote) {
     this.quotesService.removeQuoteFromFavorites(quote);
     //si se quiere recargar todo devuelta:
     //this.quotes=this.quotesService.getFavoriteQuotes();
     //alternativa si se quiere borrar sin recargar todo:
-    const position= this.quotes.indexOf(quote);
-    this.quotes.splice(position,1);
+    const position = this.quotes.indexOf(quote);
+    this.quotes.splice(position, 1);
   }
   /*
   //se reemplaza con la directiva menuToggle
@@ -56,8 +56,13 @@ export class FavoritesPage {
   }
   */
 
-  getBackground(){
-    return this.settingsService.isAltBackground() 
-        ? 'altQuoteBackground' : 'quoteBackground';
+  getBackground() {
+    return this.settingsService.isAltBackground()
+      ? 'altQuoteBackground' : 'quoteBackground';
   }
+
+  isAltBackground() {
+    return this.settingsService.isAltBackground();
+  }
+
 }
